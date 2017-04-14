@@ -11,7 +11,13 @@ class Songs(ndb.Model):
     message = ndb.TextProperty(required=False)
     country = ndb.StringProperty(required=False)
     queue = ndb.BooleanProperty(default=True)
+    length = ndb.IntegerProperty(required=True)
+    tags = ndb.StringProperty(required=False, repeated=True)
 
     @classmethod
     def query_book(cls, ancestor_key):
         return cls.query(ancestor=ancestor_key).order(-cls.timestamp)
+
+    @classmethod
+    def exists(cls, *args):
+        return bool(Songs.query(*args).get())
