@@ -74,7 +74,7 @@ def get_default_songs(tags):
         song["tags"] = []
     info("returning the song " + repr(song))
     song = {
-        "username_message": [{"name": "pravesh", "message": "Default songs"}],
+        "username_message": [{"name": "resham", "message": "Happy new year!"}],
         "youtube_id": get_youtube_id_from_url(song['youtube']),
         "tags": song["tags"]
     }
@@ -89,6 +89,9 @@ class SongsHandler(webapp2.RequestHandler):
         tags = [t.lower() for t in tags]
         debug("Got following tags {0}".format(" ".join(tags)))
         data = get_song(tags)
+        if not data:
+            debug("Got empty data")
+            return _json(self, get_default_songs(tags))
         debug("Data for the tags: {0}" + json.dumps(data))
         return _json(self, data)
 

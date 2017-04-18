@@ -1,6 +1,7 @@
+
 __author__ = 'pravesh'
 
-import acoustic_covers, electronic, experimental, folk_classical_country, hiphop, metal, pop, progressive, rock
+import acoustic_covers, electronic, experimental, folk_classical_country, hiphop, metal, pop, progressive, rock, hindi, nepali
 
 songs = acoustic_covers.acoustic_covers + \
         electronic.electronic + \

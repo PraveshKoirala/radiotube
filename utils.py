@@ -1,4 +1,5 @@
 from collections import Counter
+import random
 from models import Songs
 from video_details import video_details
 import google.appengine.api.memcache as mc
@@ -79,6 +80,11 @@ def get_relevant_song(tags):
     # get the latest running song
     # results = db.songs.find({'queue': True}).sort([("timestamp", 1)]).limit(1)
     tags = filter(None, tags)
+
+    # set this to True, in order to include songs that have already been played
+    return_past_songs = True
+
+
     if tags:
         results = Songs.query(Songs.queue == True, Songs.tags.IN(tags)).order(Songs.timestamp)
     else:
@@ -88,6 +94,18 @@ def get_relevant_song(tags):
     if results:
         # find other similar results here and mark others as tagged..
         return results[0]
+    else:
+        if return_past_songs:
+            default_or_past = random.choice(["default"] * 7 + ["past"] * 3)
+            if default_or_past == "past":
+                # return past songs.
+                if tags:
+                    results = Songs.query(Songs.tags.IN(tags))
+                else:
+                    results = Songs.query()
+                results = list(results)
+                if results:
+                    return random.choice(results)
     return {}
 
 

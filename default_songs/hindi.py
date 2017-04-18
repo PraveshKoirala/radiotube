@@ -12,7 +12,7 @@ hindi = [
         "message": "",
         "youtube": "https://www.youtube.com/watch?v=5mpq_4rzB1U",
         "tags": ["hindi"]
-    }
+    },
 
     {
     "name": "Resham TV",
