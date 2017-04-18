@@ -10,4 +10,6 @@ songs = acoustic_covers.acoustic_covers + \
         metal.metal + \
         pop.pop + \
         progressive.progressive + \
-        rock.rock
+        rock.rock + \
+        nepali.nepali + \
+        hindi.hindi
